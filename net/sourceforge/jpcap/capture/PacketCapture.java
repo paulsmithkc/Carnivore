@@ -180,17 +180,8 @@ public class PacketCapture extends PacketCaptureBase implements PacketCaptureCap
 //		if(System.getProperty("os.name").toLowerCase(Locale.US).indexOf("mac") != -1) {
 //			System.out.print("Mac...");
 			//this chooses the libjpcap*.jnilib library file for jpcap (Mac only)
+			s = (OSValidator.isAppleSilicon()) ? "jpcap" : "jpcap-macIntel";
 			
-//			s = "jpcap-i386";
-//			
-//			if(System.getProperty("os.arch").toLowerCase(Locale.US).indexOf("ppc") != -1) {
-////				System.out.print("i386");
-////				System.loadLibrary("jpcap-i386");
-//				s = "jpcap-ppc";
-//			}   
-
-			s = "jpcap";
-
 		//Linux
 		} else if (OSValidator.isUnix()){
 //			System.out.print("Linux...");
