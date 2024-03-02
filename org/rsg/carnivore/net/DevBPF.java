@@ -112,8 +112,8 @@ public class DevBPF {
 	private static boolean isPromiscuous(String path) throws IOException {
 		Path p = Paths.get(path);
 		Set<PosixFilePermission> set = Files.getPosixFilePermissions(p);
+		System.out.println(path + " : " + (isPromiscuous(set) ? "Promiscuous" : "Not Promiscuous"));			
 		return isPromiscuous(set);
-//		System.out.println(path + " : " + (isPromiscuous(set) ? "Promiscuous" : "Not Promiscuous"));			
 	}
 	
 	private static boolean isPromiscuous(Set<PosixFilePermission> set) {

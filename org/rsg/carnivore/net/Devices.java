@@ -1,5 +1,6 @@
 package org.rsg.carnivore.net;
 
+import java.io.IOException;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
@@ -14,10 +15,37 @@ import org.rsg.lib.Log;
 //open devices: chmod 777 /dev/bpf*
 //reset them:   chmod 600 /dev/bpf*
 
+/*
+ * builds a hash of devices (device name, longer name), filtering on en*
+ * this is called in Core
+ * afterward, we open capture on each device found here
+ */
+
 public class Devices { 
     private static String _current_device;
 	public static HashMap<String, String> _devices = 			new HashMap<String, String>();
 	public static HashMap<String, String> _interface_lookup = 	new HashMap<String, String>();
+	
+	
+	
+	public static void main(String[] args) throws IOException {
+		new Devices();
+//		HashMap<String, String> d = devices.getDevices();
+		
+        // Print elements of the HashMap
+        System.out.println("_devices:");
+        for (HashMap.Entry<String, String> entry : _devices.entrySet()) {
+            System.out.println("\t" + entry.getKey() + " (" + entry.getValue() + ")");
+        }
+        
+//        System.out.println("_interface_lookup:");
+//        for (HashMap.Entry<String, String> entry : _interface_lookup.entrySet()) {
+//            System.out.println("\t" + entry.getKey() + " (" + entry.getValue() + ")");
+//        }
+	}
+
+	
+	
 	
 	public Devices() {
 
@@ -43,7 +71,7 @@ public class Devices {
 
 					//BUILD HASH OF DEVICE NAMES AND LONG NAMES				
 					String prefix = name.substring(0,2);
-					if (!prefix.equals("lo")) { //ignore loopback? (lo, lo0)
+					if (prefix.equals("en")) { //only use ethernet
 
 						//USE LOOKUP NAME FOR CERTAIN INTERFACES
 						if(_interface_lookup.containsKey(name)){
@@ -67,13 +95,17 @@ public class Devices {
 				e.printStackTrace();
 			}
 
-			//MAC CODE
-			//TODO: check to see if this works on linux
+		//MAC CODE
+		//TODO: check to see if this works on linux
 		} else {
 			//SET UP KNOWN INTERFACE LONG NAME LOOK UP TABLE
 			_interface_lookup.put("lo0", "loopback");
 			_interface_lookup.put("en0", "Built-in Ethernet");
-			_interface_lookup.put("en1", "AirPort");
+			_interface_lookup.put("en1", "AirPort"); 
+			_interface_lookup.put("awdl0", "Apple Wireless Direct Link");
+			_interface_lookup.put("llw0", "Link-local IPv6");
+			_interface_lookup.put("utun0", "virtual network interfaces");
+			
 
 			Enumeration<NetworkInterface> list;
 			try {
@@ -83,13 +115,13 @@ public class Devices {
 
 					//BUILD HASH OF DEVICE NAMES AND LONG NAMES				
 					String prefix = iface.getName().toString().substring(0,2);
-					if (!prefix.equals("lo")) { //ignore loopback? (lo, lo0)
+					if (prefix.equals("en")) { //only use ethernet
 
 						//USE LOOKUP NAME FOR CERTAIN INTERFACES
 						if(_interface_lookup.containsKey(iface.getName())){
 							_devices.put(iface.getName(), (String) _interface_lookup.get(iface.getName()));
 
-							//OTHERWISE USE WHATEVER THE DEVICE TOLD US
+						//OTHERWISE USE WHATEVER THE DEVICE TOLD US
 						} else {
 							_devices.put(iface.getName(),iface.getDisplayName());
 						}

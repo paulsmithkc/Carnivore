@@ -60,8 +60,8 @@ class PacketCacheThread extends Thread {
 		}
 	}
 	
-	private boolean isOverLimit() {
-		int sliderVolume = Preferences.instance().getInt(Constants.MAXIMUM_VOLUME);
+	private boolean isOverLimit() {		
+		int sliderVolume = User_Defaults.instance().getInt(Constants.MAXIMUM_VOLUME, Constants.DEFAULT_MAXIMUM_VOLUME);
 		if(sliderVolume >= Constants.VOLUME_MAX) { 			 //infinity state so always return false
 			return false;
 		} else {

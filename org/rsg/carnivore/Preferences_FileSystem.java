@@ -12,23 +12,33 @@ import java.util.Properties;
 import org.rsg.lib.Log;
 
 /*
+ * Deprecated -- switched to User_Defaults in order to avoid write permission problems
+ */
+
+/*
  * a wrapper for Properties
  * this is static and singleton so that it can be called anywhere at any time 
  */
 
-public class Preferences {
+public class Preferences_FileSystem {
 	private static Properties propsPreferences;
 	private static File file;
 	public static boolean shouldSaveOrLoad = true;
+	
+    ///////////////////////////////////////////////////////////////////////////
+	//Main
+	public static void main(String[] args) throws IOException {
+		Preferences_FileSystem.instance().load();
+	}
 
     ///////////////////////////////////////////////////////////////////////////
 	//singleton pattern
-    private static final Preferences INSTANCE = new Preferences();
-    public static Preferences instance() {
+    private static final Preferences_FileSystem INSTANCE = new Preferences_FileSystem();
+    public static Preferences_FileSystem instance() {
         return INSTANCE;
     }
     
-	private Preferences() {
+	private Preferences_FileSystem() {
 		propsPreferences = new Properties();
 		file = new File(Constants.FILENAME_PROPS);
 		load();

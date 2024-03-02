@@ -69,7 +69,7 @@ public class Core implements PacketListener {
 		while(it.hasNext()){
 			String name = (String)it.next();
 
-			if (!name.substring(0,2).equals("lo")) { //ignore loopback? (lo, lo0)			
+//			if (!name.substring(0,2).equals("lo")) { //ignore loopback? (lo, lo0)			
 				
 				//CREATE CAPTURE INSTANCE
 				packetcapture = new PacketCapture();
@@ -97,7 +97,7 @@ public class Core implements PacketListener {
 				//ADD CALLBACK
 				packetcapture.addPacketListener(this);
 				packetcapturethreads.add(new PacketCaptureThread(packetcapture));  //save instance in thread
-			}
+//			}
 	    } 
 	}
 
@@ -197,7 +197,7 @@ public class Core implements PacketListener {
 				carnipacket.ipIdentification = ((IPPacket)packet).getId();
 //				carnipacket.jpUDPPacket = udpPacket;
 
-				if(!Preferences.instance().getBoolean(Constants.SHOULD_SKIP_UDP)) {
+				if(!User_Defaults.instance().getBoolean(Constants.SHOULD_SKIP_UDP, Constants.DEFAULT_SHOULD_SKIP_UDP)) {
 					PacketCacheThread.instance().addPacket(carnipacket);
 				}
 			}

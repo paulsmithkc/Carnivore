@@ -20,7 +20,8 @@ public class CarniUtilities {
     }
     
 	public static Object[] packetToObjectArray(CarnivorePacket p) {
-		return new Object[]{	p.strTransportProtocol, 
+		return new Object[]{	
+				p.strTransportProtocol, 
 				p.dateStamp(), 
 				p.senderSocket(),
 				p.receiverSocket(),

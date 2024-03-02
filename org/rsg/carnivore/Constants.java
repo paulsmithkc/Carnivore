@@ -4,7 +4,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 
 public class Constants {
-	public final static long VERSION = (long) 8; // the version number is stored in three places 
+	public final static long VERSION = (long) 9; // the version number is stored in three places 
 												 // (change them all for a new version roll out):
 												 // 		--here in Constants.java
 												 //			--in build.xml
@@ -18,8 +18,8 @@ public class Constants {
 	public final static int intTCP = 6; 	//standard protocol numbers
 	public final static int intUDP = 17; 	//for these two
 	
-	public final static String JPCAP_i386 = "jpcap-i386";
-	public final static String JPCAP_PPC = "jpcap-ppc";
+//	public final static String JPCAP_i386 = "jpcap-i386";
+//	public final static String JPCAP_PPC = "jpcap-ppc";
 	
 	public final static String strTCP = "TCP";	
 	public final static String strUDP = "UDP";	

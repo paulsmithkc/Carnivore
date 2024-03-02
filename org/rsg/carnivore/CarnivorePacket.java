@@ -8,7 +8,7 @@ import org.rsg.lib.LibUtilities;
 /**
  * @author RSG
  * @version 2.2
- */
+ */ 
 public class CarnivorePacket implements Serializable {
 	private static final long serialVersionUID = Constants.VERSION;
 	
@@ -201,7 +201,7 @@ public class CarnivorePacket implements Serializable {
 	 * @return the payload of the packet, based on default channel
 	 */
 	public String payload() {
-		return payload(Preferences.instance().getInt(Constants.CHANNEL));
+		return payload(User_Defaults.instance().getInt(Constants.CHANNEL, Constants.DEFAULT_CHANNEL));
 	}
 
 	/**
@@ -222,7 +222,7 @@ public class CarnivorePacket implements Serializable {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		int channel = Preferences.instance().getInt(Constants.CHANNEL);
+		int channel = User_Defaults.instance().getInt(Constants.CHANNEL, Constants.DEFAULT_CHANNEL);
 		if(channel == Constants.CHANNEL_CARNIVORE) {		
 			return header() + " == " + payload(channel);
 		} else if(channel == Constants.CHANNEL_HEXIVORE) {

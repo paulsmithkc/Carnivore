@@ -17,7 +17,7 @@ import processing.core.PApplet;
  * @author RSG
  * @version 2.2
  * 
- */
+ */ 
 public class CarnivoreP5 implements CarnivoreListener {
 	PApplet parent;
 	Method packetEventMethod;
@@ -64,14 +64,16 @@ public class CarnivoreP5 implements CarnivoreListener {
 	 * @param i volume limit in packets per second
 	 */
 	public void setVolumeLimit(int i) {
-		Preferences.instance().put(Constants.MAXIMUM_VOLUME, CarniUtilities.normalizeVolume(i));	
+		User_Defaults.instance().put(Constants.MAXIMUM_VOLUME, CarniUtilities.normalizeVolume(i));
+//		Preferences_FileSystem.instance().put(Constants.MAXIMUM_VOLUME, CarniUtilities.normalizeVolume(i));	
 	}
 
 	/**
 	 * Determines if carnivore core should print TCP and UDP packets, or only TCP packets. 
 	 */
 	public void setShouldSkipUDP(boolean b) {
-		Preferences.instance().put(Constants.SHOULD_SKIP_UDP, b);	
+		User_Defaults.instance().put(Constants.SHOULD_SKIP_UDP, b);
+//		Preferences_FileSystem.instance().put(Constants.SHOULD_SKIP_UDP, b);	
 	}
 	
 	//////////////////////////////////////////////////////////////////////

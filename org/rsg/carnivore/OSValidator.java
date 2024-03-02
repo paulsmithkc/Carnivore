@@ -10,6 +10,15 @@ public class OSValidator {
 	public static void main(String[] args) {
  
 		System.out.println(OSValidator.toMessage());
+
+		System.out.println("isAppleSilicon: " + (isAppleSilicon() ? "yes" : "no"));
+
+		
+		
+		
+		System.out.println("OS_ARCH: " + OS_ARCH);
+		System.out.println("OS_VERSION: " + OS_VERSION);
+		System.out.println("OS_BITS: " + OS_BITS);
  
 		if (is32bit()) {
 			System.out.println("This is 32 bit");
@@ -40,6 +49,10 @@ public class OSValidator {
 		return OS_BITS.equals("64");
 	}
 
+	public static boolean isAppleSilicon() {
+		return (OS_ARCH.toLowerCase().indexOf("aarch64") >= 0);
+	}
+	
 	public static boolean isARM() {
 		return (OS_ARCH.toLowerCase().indexOf("arm") >= 0);
 	}
