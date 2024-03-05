@@ -2,7 +2,8 @@
 	<description>simple example build file</description>	
 	<property name="build" location="build"/>
 	<property name="docs" location="build/docs"/>
-	<property name="upload" location="upload"/>
+	<property name="upload" location="upload"/>				<!-- for rsg website -->
+	<property name="distribution" location="distribution"/> <!-- for github commits -->
 	<property name="buildP5" location="build/p5/carnivore"/>
 	<property name="jar" location="lib/carnivore.jar"/>
 	<property name="jarRsgLib" location="lib/rsglib.jar"/>
@@ -43,8 +44,8 @@
 		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.properties"/></copy>
 		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.zip"/></copy>
 		
-		<copy file="libjpcap-arm64.jnilib" todir="${buildP5}/library"/> 	<!-- Apple Silicon arm64 -->
-		<copy file="libjpcap-x86_64.jnilib" todir="${buildP5}/library"/> 	<!-- Apple Intel x86_64 -->			
+		<copy file="libjpcap-mac_arm64.jnilib" todir="${buildP5}/library"/> 	<!-- Apple Silicon arm64 -->
+		<copy file="libjpcap-mac_x86_64.jnilib" todir="${buildP5}/library"/> 	<!-- Apple Intel x86_64 -->			
 		<copy file="jpcap-win32bit.dll" todir="${buildP5}/library"/>
 		<copy file="jpcap-win64bit.dll" todir="${buildP5}/library"/>
 		<!--<copy file="libjpcap-linux32bit.so" todir="${buildP5}/library"/>-->		
@@ -59,5 +60,7 @@
 		<property name="zipP5" value="carnivore_p5lib_v${v}.zip"/>
 		<delete file="${upload}/${zipP5}"/>
 		<zip zipfile="${upload}/${zipP5}" basedir="build/p5"/>
+		<copy file="${upload}/${zipP5}" todir="${distribution}/"/>				
+
 	</target>
 </project>
