@@ -104,7 +104,7 @@ public class DevBPF {
 //		if((f.canRead()) && (f.canWrite())) {
 //			return true;
 //		} else {
-//			return false;
+//			return false;		
 //		}
 //	}
 
@@ -112,7 +112,7 @@ public class DevBPF {
 	private static boolean isPromiscuous(String path) throws IOException {
 		Path p = Paths.get(path);
 		Set<PosixFilePermission> set = Files.getPosixFilePermissions(p);
-		System.out.println(path + " : " + (isPromiscuous(set) ? "Promiscuous" : "Not Promiscuous"));			
+//		System.out.println(path + " : " + (isPromiscuous(set) ? "Promiscuous" : "Not Promiscuous"));			
 		return isPromiscuous(set);
 	}
 	

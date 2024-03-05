@@ -165,22 +165,15 @@ public class PacketCapture extends PacketCaptureBase implements PacketCaptureCap
 		
 		//win
 		if(OSValidator.isWindows()) {
-//			System.out.print("Windows...") ;
-			
-			s = "jpcap-win64bit";
-			
-			if(OSValidator.is32bit()) {
-//				System.out.print("32 bit");
-				s = "jpcap-win32bit";
-//				System.loadLibrary("jpcap-win32bit");
-			} 	
+//			System.out.print("Windows...") ;			
+			s = (OSValidator.is32bit()) ? "jpcap-win32bit" : "jpcap-win64bit";
 			
 		//mac
 		} else if(OSValidator.isMac()) {
 //		if(System.getProperty("os.name").toLowerCase(Locale.US).indexOf("mac") != -1) {
 //			System.out.print("Mac...");
 			//this chooses the libjpcap*.jnilib library file for jpcap (Mac only)
-			s = (OSValidator.isAppleSilicon()) ? "jpcap" : "jpcap-macIntel";
+			s = (OSValidator.isAppleSilicon()) ? "jpcap-mac_arm64" : "jpcap-mac_x86_64";
 			
 		//Linux
 		} else if (OSValidator.isUnix()){

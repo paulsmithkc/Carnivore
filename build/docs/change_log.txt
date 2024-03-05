@@ -1,3 +1,11 @@
+Version 9, March, 2024
++ Added support for Apple Silicon -- recompiled jpcap
++ Had to migrate a few things, given new java, new processing, etc.
+	-- only captures on en* devices
+	-- changed preferences system over to user_defaults
+
+--------------------------------------------------------------------
+
 Version 8, April, 2016
 + Added support for ARM Linux architecture (for Raspberry Pi)
 

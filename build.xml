@@ -43,14 +43,14 @@
 		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.properties"/></copy>
 		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.zip"/></copy>
 		
-		<copy file="libjpcap.jnilib" todir="${buildP5}/library"/> 			<!-- Apple Silicon arm64 -->
-		<copy file="libjpcap-macIntel.jnilib" todir="${buildP5}/library"/> 	<!-- Apple Intel x86_64 -->			
+		<copy file="libjpcap-arm64.jnilib" todir="${buildP5}/library"/> 	<!-- Apple Silicon arm64 -->
+		<copy file="libjpcap-x86_64.jnilib" todir="${buildP5}/library"/> 	<!-- Apple Intel x86_64 -->			
 		<copy file="jpcap-win32bit.dll" todir="${buildP5}/library"/>
 		<copy file="jpcap-win64bit.dll" todir="${buildP5}/library"/>
 		<!--<copy file="libjpcap-linux32bit.so" todir="${buildP5}/library"/>-->		
 		<copy file="libjpcap-linux64bit.so" todir="${buildP5}/library"/>				
 		<copy file="libjpcap-linuxARM.so" todir="${buildP5}/library"/>				
-				<!--<copy file="libpcap.so.0.8" todir="${buildP5}/library"/>-->	
+		<!--<copy file="libpcap.so.0.8" todir="${buildP5}/library"/>-->	
 	</target>
 
 	<!-- ZIP -->
